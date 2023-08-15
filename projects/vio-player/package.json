@@ -1,0 +1,13 @@
+{
+  "name": "vio-player",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0"
+  },
+  "dependencies": {
+    "moment": "^2.29.4",
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

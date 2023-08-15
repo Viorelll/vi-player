@@ -1,0 +1,17 @@
+<div class="vio-song">
+  <div class="song__container">
+    <div class="main__song">
+      <div class="song__image">
+        <img src="{{song?.coverImageUrl}}" alt="{{song?.name}}" width="30" height="30">
+      </div>
+      <div class="song__info">
+        <div class="song__text">
+          <div class="song__number">{{ getSongNumber() }} -</div>
+          <div class="song__artist">{{ song?.artist }} -</div>
+          <div class="song__title">{{ song?.name}}</div>
+        </div>
+        <div class="song__genre">{{ song?.genre }}</div>
+      </div>
+    </div>
+  </div>
+</div>

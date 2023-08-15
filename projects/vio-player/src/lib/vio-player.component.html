@@ -1,0 +1,69 @@
+<div class="vio-container">
+  <div class="vio-playlist" *ngIf="state.showPlaylist">
+    <div *ngFor="let song of songs; let i = index"
+      [ngClass]="{'vio-playing': i === currentSong.index}">
+      <vio-song [song]="song" [index]="i" (click)="openSong(song, i)"></vio-song>
+    </div>
+  </div>
+  <div class="vio-player">
+    <div class="vio-left-button-set">
+      <button class="vio-btn" (click)="previous()" [disabled]="isFirstPlaying()">
+        <img src="../assets/icons/Back.svg" alt="Previous">
+      </button>
+      <button type="submit" class="vio-btn" (click)="onPausePlay()">
+        <img src="{{ isPlaying() ? '../assets/icons/Pause.svg' : '../assets/icons/Play.svg' }}" alt="Previous">
+      </button>
+      <button class="vio-btn" (click)="next()" [disabled]="isLastPlaying()">
+        <img src="../assets/icons/Next.svg" alt="Next">
+      </button>
+    </div>
+    <div class="vio-song-details">
+      <div class="vio-song-image">
+        <img src="{{currentSong.song?.coverImageUrl}}" alt="Cover" width="50" height="50">
+      </div>
+      <div class="vio-song-description">
+        <div class="vio-song-title">
+          {{ currentSong.song?.name }}
+        </div>
+        <div class="vio-song-artist">
+          {{ currentSong.song?.artist }}
+        </div>
+      </div>
+    </div>
+    <div class="vio-song-slide">
+      <div class="vio-current-time">
+        {{ state.songState.readableCurrentTime }}
+      </div>
+      <input #slider class="song-slider" type="range" id="timer" name="timer" min="0"
+        max="{{ state.songState.duration }}" step="1" value="{{ state.songState.currentTime }}"
+        (input)="onSliderChangeEnd($event.target)" [disabled]="state.songState.error || currentSong.index === undefined"
+        [style.background]="'linear-gradient(to right, #84579E 0%, #84579E '+ getSongSlideLevel(slider.valueAsNumber) +'%, #FFF ' + getSongSlideLevel(slider.valueAsNumber) + '%, #FFF 100%)'" />
+      <div class="vio-duration-time">
+        {{ state.songState.readableDuration }}
+      </div>
+    </div>
+    <div class="vio-right-button-set">
+      <div class="vio-volume">
+        <button class="vio-btn" (click)="onMute()">
+          <img src="{{ state.mute ? '../assets/icons/Mute.svg' : '../assets/icons/Volume.svg' }}" alt="Previous">
+        </button>
+        <div class="vio-volume-control">
+          <input #slider class="vio-volume-slider" type="range" min="0" max="100" value="{{ state.songState.volumeLevel }}"
+            (input)="onSliderVolumeChange($event.target)"
+            [style.background]="'linear-gradient(to right, #84579E 0%, #84579E '+ state.songState.volumeLevel +'%, #D7D7D7 ' + state.songState.volumeLevel + '%, #D7D7D7 100%)'" >
+          </div>
+      </div>
+      <button class="vio-btn" (click)="mode()">
+        <img src="{{ state.mode === 'shuffle' ? '../assets/icons/Shuffle.svg' :
+                       state.mode === 'repeat' ? '../assets/icons/Repeat.svg' : '../assets/icons/RepeatSong.svg' }}"
+          alt="Previous">
+      </button>
+
+
+      <button class="vio-btn" (click)="playlist()">
+        <img src="../assets/icons/Playlist.svg" alt="Previous">
+      </button>
+
+    </div>
+  </div>
+</div>

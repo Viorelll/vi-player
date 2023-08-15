@@ -1,0 +1,56 @@
+.vio-song {
+  padding: 0 20px;
+
+  cursor: pointer;
+
+
+  .song__container {
+     border-bottom: 1px solid #f2f2f2;
+     padding: 7px 0;
+
+    .main__song {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #666666;
+      width: 100%;
+
+      .song__image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .song__info {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 14px;
+
+        .song__text {
+          display: flex;
+
+          .song__number {
+            margin-right: 5px;
+            font-weight: 100;
+            color: #999;
+          }
+          .song__artist {
+            margin-right: 5px;
+            font-weight: 100;
+            color: #999;
+          }
+          .song__title {
+            font-weight: 100;
+            color: #333;
+          }
+        }
+
+        .song__genre {
+          font-weight: 100;
+          color: #333;
+        }
+      }
+    }
+  }
+}
